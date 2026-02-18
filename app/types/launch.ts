@@ -8,3 +8,12 @@ export interface Launch {
     webcast: string | null;
   };
 }
+
+export interface QueryBody {
+  query: Record<string, unknown>;
+  options?: {
+    sort?: Record<string, "asc" | "desc" | string>;
+    limit?: number;
+    page?: number;
+  };
+}
