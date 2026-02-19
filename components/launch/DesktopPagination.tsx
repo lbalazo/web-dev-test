@@ -9,7 +9,7 @@ export default function DesktopPagination({
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <div className="hidden sm:flex gap-1 justify-center items-center">
+    <div className="hidden lg:flex gap-1 justify-center items-center">
       {pages.map((page) => (
         <Button
           key={page}

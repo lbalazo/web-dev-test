@@ -11,7 +11,7 @@ export default function MobilePagination({
   onPageClick,
 }: PaginationControlsProps) {
   return (
-    <div className="flex sm:hidden gap-2 justify-center items-center">
+    <div className="flex lg:hidden gap-2 justify-center items-center">
       <Button
         variant="outline"
         className="w-9 h-9 p-0 cursor-pointer"

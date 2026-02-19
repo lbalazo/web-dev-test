@@ -1,3 +1,4 @@
+import Hero from "@/components/launch/Hero";
 import LaunchList from "@/components/launch/LaunchList";
 import SearchBar from "@/components/launch/SearchBar";
 import StatusFilter from "@/components/launch/StatusFilter";
@@ -27,18 +28,22 @@ export default async function Home({
   const page = Number(params?.page) || 1;
 
   return (
-    <div className="container mx-auto p-6">
-      <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-8">
-        <SearchBar />
-        <StatusFilter />
-      </div>
+    <>
+      <Hero />
 
-      <LaunchList
-        searchQuery={searchQuery}
-        status={status}
-        sort={sort}
-        page={page}
-      />
-    </div>
+      <div className="container mx-auto p-6">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-8">
+          <SearchBar />
+          <StatusFilter />
+        </div>
+
+        <LaunchList
+          searchQuery={searchQuery}
+          status={status}
+          sort={sort}
+          page={page}
+        />
+      </div>
+    </>
   );
 }
