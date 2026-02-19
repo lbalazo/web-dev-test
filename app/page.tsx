@@ -17,9 +17,9 @@ export default async function Home({
   const params = await searchParams;
   const searchQuery = params?.search ?? "";
   const status =
-    params?.success === "true"
+    params?.success === "success"
       ? true
-      : params?.success === "false"
+      : params?.success === "failed"
       ? false
       : undefined;
 

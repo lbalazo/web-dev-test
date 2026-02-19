@@ -37,21 +37,21 @@ export default function StatusFilter() {
   return (
     <div className="flex gap-2">
       <Button
-        variant={current === "true" ? "default" : "outline"}
-        onClick={() => handleStatusClick("true")}
+        variant={current === "success" ? "default" : "outline"}
+        onClick={() => handleStatusClick("success")}
         className={clsx("cursor-pointer", {
           "bg-green-500 hover:bg-green-600 text-white border-0":
-            current === "true",
+            current === "success",
         })}
       >
         Success
       </Button>
       <Button
-        variant={current === "false" ? "default" : "outline"}
-        onClick={() => handleStatusClick("false")}
+        variant={current === "failed" ? "default" : "outline"}
+        onClick={() => handleStatusClick("failed")}
         className={clsx("cursor-pointer", {
           "bg-red-500 hover:bg-red-600 text-white border-0":
-            current === "false",
+            current === "failed",
         })}
       >
         Failed
