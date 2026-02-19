@@ -25,6 +25,8 @@ export default function MissionHero({ launch }: MissionHeroProps) {
         alt={launch.name}
         width={300}
         height={300}
+        priority={true}
+        loading={"eager"}
       />
       <h1 className="text-3xl font-bold">{launch.name}</h1>
       <div className="flex gap-2 items-center">

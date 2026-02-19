@@ -21,7 +21,7 @@ export default async function LaunchList({
       name: { $regex: searchQuery, $options: "i" },
       ...(status !== undefined && { success: status }),
     },
-    options: { sort: { date_utc: sort }, limit: 18, page },
+    options: { sort: { date_utc: sort }, limit: 15, page },
   };
 
   const data = await queryLaunches(queryBody);
@@ -55,8 +55,8 @@ export default async function LaunchList({
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {launches.map((launch) => (
-          <LaunchCard key={launch.id} launch={launch} />
+        {launches.map((launch, i) => (
+          <LaunchCard key={launch.id} launch={launch} priority={i < 6} />
         ))}
       </div>
       <Pagination currentPage={page} totalPages={totalPages} />

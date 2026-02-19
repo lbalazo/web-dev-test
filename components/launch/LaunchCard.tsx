@@ -6,9 +6,10 @@ import { Launch } from "@/app/types/launch";
 
 interface LaunchCardProps {
   launch: Launch;
+  priority: boolean;
 }
 
-export default function LaunchCard({ launch }: LaunchCardProps) {
+export default function LaunchCard({ launch, priority }: LaunchCardProps) {
   const fallBackImg = "/fallback.png";
   return (
     <Card className="hover:shadow-lg transition-shadow">
@@ -19,6 +20,8 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
           height={250}
           width={250}
           className="h-[250px] w-[250px] cover"
+          priority={priority}
+          loading={priority ? "eager" : "lazy"}
         />
         <h3 className="text-lg font-semibold">{launch.name}</h3>
         <p className="text-sm text-gray-500">
