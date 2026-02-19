@@ -9,7 +9,7 @@ export default function StatusFilter() {
   const router = useRouter();
 
   const current = searchParams?.get("success") ?? "";
-  const sort = searchParams?.get("sort") ?? "asc";
+  const sort = searchParams?.get("sort") ?? "desc";
 
   function buildParams() {
     const params = new URLSearchParams();
@@ -33,7 +33,6 @@ export default function StatusFilter() {
     params.set("sort", sort === "asc" ? "desc" : "asc");
     router.replace(`/?${params.toString()}`);
   }
-
   return (
     <div className="flex gap-2">
       <Button
@@ -61,7 +60,7 @@ export default function StatusFilter() {
         onClick={handleSortClick}
         className="cursor-pointer"
       >
-        Date {sort === "asc" ? "↑" : "↓"}
+        Date {sort === "desc" ? "↓" : "↑"}
       </Button>
     </div>
   );
