@@ -33,8 +33,8 @@ export default function MissionHero({ launch }: MissionHeroProps) {
         <Badge
           className={
             success
-              ? "bg-green-500 hover:bg-green-600"
-              : "bg-red-500 hover:bg-red-600"
+              ? "bg-green-600 hover:bg-green-700 text-black"
+              : "bg-red-600 hover:bg-red-700 text-white"
           }
         >
           {success ? "Success" : "Failed"}

@@ -19,7 +19,9 @@ export default function LaunchCard({ launch }: { launch: Launch }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Mission Details</CardTitle>
+        <CardTitle>
+          <h2>Mission Details</h2>
+        </CardTitle>
       </CardHeader>
 
       <CardContent className="flex flex-col gap-4">
@@ -27,13 +29,13 @@ export default function LaunchCard({ launch }: { launch: Launch }) {
           <div
             className={`rounded p-4 border ${
               success
-                ? "bg-green-50 border-green-200"
-                : "bg-red-50 border-red-200"
+                ? "bg-green-50 border-green-300 text-green-800"
+                : "bg-red-50 border-red-300 text-red-800"
             }`}
           >
             <p
               className={`text-sm ${
-                success ? "text-green-600" : "text-red-600"
+                success ? "text-green-800" : "text-red-800"
               }`}
             >
               {details}
@@ -42,9 +44,9 @@ export default function LaunchCard({ launch }: { launch: Launch }) {
         )}
         {failures.length > 0 && (
           <div className="bg-red-50 border border-red-200 rounded p-4">
-            <h3 className="font-semibold text-red-600 mb-2">Failures</h3>
+            <h3 className="font-semibold text-red-800 mb-2">Failures</h3>
             {failures.map((f, i) => (
-              <p key={i} className="text-sm text-red-500">
+              <p key={i} className="text-sm text-red-800">
                 T+{f.time}s {f.altitude ? `@ ${f.altitude}km` : ""} — {f.reason}
               </p>
             ))}

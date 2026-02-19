@@ -17,10 +17,16 @@ export default function MobilePagination({
         className="w-9 h-9 p-0 cursor-pointer"
         onClick={() => onPageClick(currentPage - 1)}
         disabled={currentPage === 1}
+        aria-label="Go to previous page"
+        aria-disabled={currentPage === 1}
       >
         <ChevronLeft className="w-4 h-4" />
       </Button>
-      <span className="text-sm text-gray-500">
+      <span
+        className="text-sm text-gray-500"
+        aria-live="polite"
+        aria-atomic="true"
+      >
         {currentPage} of {totalPages}
       </span>
       <Button
@@ -28,6 +34,8 @@ export default function MobilePagination({
         className="w-9 h-9 p-0 cursor-pointer"
         onClick={() => onPageClick(currentPage + 1)}
         disabled={currentPage === totalPages}
+        aria-label="Go to next page"
+        aria-disabled={currentPage === totalPages}
       >
         <ChevronRight className="w-4 h-4" />
       </Button>

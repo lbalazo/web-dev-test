@@ -14,10 +14,12 @@ export default function RocketCard({ rocket }: { rocket: Rocket }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Rocket</CardTitle>
+        <CardTitle>
+          <h2>Rocket</h2>
+        </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
-        <h2 className="text-xl font-semibold">{rocket.name}</h2>
+        <h3 className="text-xl font-semibold">{rocket.name}</h3>
 
         <div className="grid grid-cols-2 gap-2 text-sm">
           <div className="bg-gray-50 rounded p-3">
