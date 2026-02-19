@@ -40,3 +40,9 @@ ShadCN has been initialised but the components have not been setup. Please set u
 ### 4. Design
 You can use any styles you like just make it responsive across desktop, tablet & mobile. 
 **Bonus:** Implement some kind of animation with your preffered animation library. 
+
+## Environment Variables
+
+Create a `.env` file in the root of the project and add:
+
+### SPACE_X_API_BASE_URL=https://api.spacexdata.com/v4
