@@ -26,7 +26,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
           {new Date(launch.date_utc).toLocaleDateString()}
         </p>
         <Button asChild className="mt-2">
-          <Link href={`/missions/${launch.id}`}>View Details</Link>
+          <Link href={`/mission/${launch.id}`}>View Details</Link>
         </Button>
       </CardContent>
     </Card>
