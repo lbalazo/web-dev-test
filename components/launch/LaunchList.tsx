@@ -23,7 +23,7 @@ export default async function LaunchList({
     },
     options: { sort: { date_utc: sort }, limit: 18, page },
   };
-  // throw new Error("Test error");
+
   const data = await queryLaunches(queryBody);
   const launches: Launch[] = data.docs;
   const totalPages = data.totalPages;
@@ -48,9 +48,12 @@ export default async function LaunchList({
 
   return (
     <div className="flex flex-col gap-12 lg:mb-64 mb-32">
-      <h2>
-        Search: <strong>{searchQuery}</strong>
-      </h2>
+      {searchQuery && (
+        <h2>
+          Search: <strong>{searchQuery}</strong>
+        </h2>
+      )}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {launches.map((launch) => (
           <LaunchCard key={launch.id} launch={launch} />

@@ -23,7 +23,7 @@ export default async function Home({
       ? false
       : undefined;
 
-  const sort = params?.sort === "desc" ? "desc" : "asc";
+  const sort = params?.sort === "asc" ? "asc" : "desc";
   const page = Number(params?.page) || 1;
 
   return (
