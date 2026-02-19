@@ -18,14 +18,11 @@ export default function SearchBar() {
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      const params = new URLSearchParams(
-        searchParamsRef.current?.toString() ?? ""
-      );
-      if (query) {
-        params.set("search", query);
-      } else {
-        params.delete("search");
-      }
+      const params = new URLSearchParams();
+      const success = searchParamsRef.current?.get("success");
+
+      if (query) params.set("search", query);
+      if (success) params.set("success", success);
 
       router.replace(`/?${params.toString()}`);
     }, 500);

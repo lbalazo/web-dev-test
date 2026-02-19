@@ -4,11 +4,18 @@ import { queryLaunches } from "@/lib/spacex";
 
 interface LaunchListProps {
   searchQuery?: string;
+  status?: boolean;
 }
 
-export default async function LaunchList({ searchQuery }: LaunchListProps) {
+export default async function LaunchList({
+  searchQuery,
+  status,
+}: LaunchListProps) {
   const queryBody = {
-    query: { name: { $regex: searchQuery, $options: "i" } },
+    query: {
+      name: { $regex: searchQuery, $options: "i" },
+      ...(status !== undefined && { success: status }),
+    },
     options: { sort: { date_utc: "asc" }, limit: 20 },
   };
 
