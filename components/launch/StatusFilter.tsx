@@ -14,14 +14,28 @@ export default function StatusFilter() {
   }, [searchParams]);
 
   const current = searchParams?.get("success") ?? "";
+  const sort = searchParams?.get("sort") ?? "asc";
 
-  function handleClick(value: string) {
+  function buildParams() {
     const params = new URLSearchParams();
     const search = searchParamsRef.current?.get("search");
-
+    const currentSort = searchParamsRef.current?.get("sort");
     if (search) params.set("search", search);
-    if (current !== value) params.set("success", value);
+    if (currentSort) params.set("sort", currentSort);
+    return params;
+  }
 
+  function handleStatusClick(value: string) {
+    const params = buildParams();
+    if (current !== value) params.set("success", value);
+    router.replace(`/?${params.toString()}`);
+  }
+
+  function handleSortClick() {
+    const params = buildParams();
+    const currentSuccess = searchParamsRef.current?.get("success");
+    if (currentSuccess) params.set("success", currentSuccess);
+    params.set("sort", sort === "asc" ? "desc" : "asc");
     router.replace(`/?${params.toString()}`);
   }
 
@@ -29,7 +43,7 @@ export default function StatusFilter() {
     <div className="flex gap-2">
       <Button
         variant={current === "true" ? "default" : "outline"}
-        onClick={() => handleClick("true")}
+        onClick={() => handleStatusClick("true")}
         className={
           current === "true"
             ? "bg-green-500 hover:bg-green-600 text-white border-0"
@@ -40,7 +54,7 @@ export default function StatusFilter() {
       </Button>
       <Button
         variant={current === "false" ? "default" : "outline"}
-        onClick={() => handleClick("false")}
+        onClick={() => handleStatusClick("false")}
         className={
           current === "false"
             ? "bg-red-500 hover:bg-red-600 text-white border-0"
@@ -48,6 +62,9 @@ export default function StatusFilter() {
         }
       >
         Failed
+      </Button>
+      <Button variant="outline" onClick={handleSortClick}>
+        Date {sort === "asc" ? "↑" : "↓"}
       </Button>
     </div>
   );

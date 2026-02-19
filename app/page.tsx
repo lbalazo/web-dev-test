@@ -5,7 +5,7 @@ import StatusFilter from "@/components/launch/StatusFilter";
 export default async function Home({
   searchParams,
 }: {
-  searchParams?: { search?: string; success?: string };
+  searchParams?: { search?: string; success?: string; sort?: string };
 }) {
   const params = await searchParams;
   const searchQuery = params?.search ?? "";
@@ -16,7 +16,7 @@ export default async function Home({
       ? false
       : undefined;
 
-  console.log(status);
+  const sort = params?.sort === "desc" ? "desc" : "asc";
 
   return (
     <div className="container mx-auto p-6">
@@ -25,7 +25,7 @@ export default async function Home({
         <StatusFilter />
       </div>
 
-      <LaunchList searchQuery={searchQuery} status={status} />
+      <LaunchList searchQuery={searchQuery} status={status} sort={sort} />
     </div>
   );
 }
