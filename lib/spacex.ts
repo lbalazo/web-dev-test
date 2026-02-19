@@ -11,6 +11,7 @@ export async function queryLaunches(queryBody: QueryBody) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(queryBody),
+    next: { revalidate: 3600 },
   });
 
   if (!res.ok) throw new Error("Failed to query launches");

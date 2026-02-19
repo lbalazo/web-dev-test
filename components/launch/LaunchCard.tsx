@@ -9,18 +9,17 @@ interface LaunchCardProps {
 }
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
+  const fallBackImg = "/fallback.png";
   return (
     <Card className="hover:shadow-lg transition-shadow">
       <CardContent className="flex flex-col items-center text-center">
-        {launch.links.patch.small && (
-          <Image
-            src={launch.links.patch.small}
-            alt={launch.name}
-            height={250}
-            width={250}
-            className="h-[250px] w-[250px] cover"
-          />
-        )}
+        <Image
+          src={launch.links.patch.small ?? fallBackImg}
+          alt={launch.name}
+          height={250}
+          width={250}
+          className="h-[250px] w-[250px] cover"
+        />
         <h3 className="text-lg font-semibold">{launch.name}</h3>
         <p className="text-sm text-gray-500">
           {new Date(launch.date_utc).toLocaleDateString()}

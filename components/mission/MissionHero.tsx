@@ -16,11 +16,16 @@ export default function MissionHero({ launch }: MissionHeroProps) {
     },
   } = launch;
 
+  const fallBackImg = "/fallback.png";
+
   return (
     <div className="flex flex-col items-center text-center gap-4 mb-8">
-      {small && (
-        <Image src={small} alt={launch.name} width={300} height={300} />
-      )}
+      <Image
+        src={small ?? fallBackImg}
+        alt={launch.name}
+        width={300}
+        height={300}
+      />
       <h1 className="text-3xl font-bold">{launch.name}</h1>
       <div className="flex gap-2 items-center">
         <Badge

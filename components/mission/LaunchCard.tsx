@@ -10,12 +10,18 @@ export default function LaunchCard({ launch }: { launch: Launch }) {
     failures,
     links: { webcast, wikipedia, article },
   } = launch;
+  const hasDetails = !!details;
+  const hasFailures = failures.length > 0;
+  const hasLinks = !!(webcast || wikipedia || article);
+
+  if (!hasDetails && !hasFailures && !hasLinks) return null;
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>Mission Details</CardTitle>
       </CardHeader>
+
       <CardContent className="flex flex-col gap-4">
         {details && (
           <div
