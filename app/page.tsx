@@ -2,10 +2,17 @@ import LaunchList from "@/components/launch/LaunchList";
 import SearchBar from "@/components/launch/SearchBar";
 import StatusFilter from "@/components/launch/StatusFilter";
 
+interface HomeSearchParams {
+  search?: string;
+  success?: string;
+  sort?: string;
+  page?: string;
+}
+
 export default async function Home({
   searchParams,
 }: {
-  searchParams?: { search?: string; success?: string; sort?: string };
+  searchParams?: HomeSearchParams;
 }) {
   const params = await searchParams;
   const searchQuery = params?.search ?? "";
@@ -17,6 +24,7 @@ export default async function Home({
       : undefined;
 
   const sort = params?.sort === "desc" ? "desc" : "asc";
+  const page = Number(params?.page) || 1;
 
   return (
     <div className="container mx-auto p-6">
@@ -25,7 +33,12 @@ export default async function Home({
         <StatusFilter />
       </div>
 
-      <LaunchList searchQuery={searchQuery} status={status} sort={sort} />
+      <LaunchList
+        searchQuery={searchQuery}
+        status={status}
+        sort={sort}
+        page={page}
+      />
     </div>
   );
 }

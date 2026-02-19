@@ -1,25 +1,20 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useRef, useEffect } from "react";
 import { Button } from "../ui/button";
+import clsx from "clsx";
 
 export default function StatusFilter() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const searchParamsRef = useRef(searchParams);
-
-  useEffect(() => {
-    searchParamsRef.current = searchParams;
-  }, [searchParams]);
 
   const current = searchParams?.get("success") ?? "";
   const sort = searchParams?.get("sort") ?? "asc";
 
   function buildParams() {
     const params = new URLSearchParams();
-    const search = searchParamsRef.current?.get("search");
-    const currentSort = searchParamsRef.current?.get("sort");
+    const search = searchParams.get("search");
+    const currentSort = searchParams.get("sort");
     if (search) params.set("search", search);
     if (currentSort) params.set("sort", currentSort);
     return params;
@@ -33,7 +28,7 @@ export default function StatusFilter() {
 
   function handleSortClick() {
     const params = buildParams();
-    const currentSuccess = searchParamsRef.current?.get("success");
+    const currentSuccess = searchParams.get("success");
     if (currentSuccess) params.set("success", currentSuccess);
     params.set("sort", sort === "asc" ? "desc" : "asc");
     router.replace(`/?${params.toString()}`);
@@ -44,26 +39,28 @@ export default function StatusFilter() {
       <Button
         variant={current === "true" ? "default" : "outline"}
         onClick={() => handleStatusClick("true")}
-        className={
-          current === "true"
-            ? "bg-green-500 hover:bg-green-600 text-white border-0"
-            : ""
-        }
+        className={clsx("cursor-pointer", {
+          "bg-green-500 hover:bg-green-600 text-white border-0":
+            current === "true",
+        })}
       >
         Success
       </Button>
       <Button
         variant={current === "false" ? "default" : "outline"}
         onClick={() => handleStatusClick("false")}
-        className={
-          current === "false"
-            ? "bg-red-500 hover:bg-red-600 text-white border-0"
-            : ""
-        }
+        className={clsx("cursor-pointer", {
+          "bg-red-500 hover:bg-red-600 text-white border-0":
+            current === "false",
+        })}
       >
         Failed
       </Button>
-      <Button variant="outline" onClick={handleSortClick}>
+      <Button
+        variant="outline"
+        onClick={handleSortClick}
+        className="cursor-pointer"
+      >
         Date {sort === "asc" ? "↑" : "↓"}
       </Button>
     </div>
